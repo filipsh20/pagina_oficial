@@ -28,6 +28,7 @@ app.use(cors({
     origin: process.env.HEROKU || "*",
     methods: ['GET', 'POST'],
 }));
+app.set("trust proxy", 1);
 app.use(session({
     secret: prooces.env.SECRETSESSION,
     resave: false,
