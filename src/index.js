@@ -23,14 +23,15 @@ app.set('port', process.env.PORT || 3000);
 //middlewars
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: false }));
-app.use(cors({
+const corsOptions = {
     credentials: true,
     origin: process.env.HEROKU || "*",
     methods: ['GET', 'POST'],
-}));
+};
+app.use(cors());
 app.set("trust proxy", 1);
 app.use(session({
-    secret: prooces.env.SECRETSESSION,
+    secret: process.env.SECRETSESSION,
     resave: false,
     saveUninitialized: false,
     name: 'session-user',
